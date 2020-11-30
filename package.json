@@ -1,0 +1,62 @@
+{
+  "name": "moonhauler",
+  "description": "",
+  "homepage": "https://github.com/davidwarshaw/moonhauler",
+  "version": "1.5.0",
+  "author": {
+    "name": "never_k",
+    "email": "david.warshaw@gmail.com",
+    "web": "https://never-k.itch.io/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/davidwarshaw/moonhauler.git"
+  },
+  "license": "MIT",
+  "keywords": [
+    "phaser",
+    "game",
+    "itch.io",
+    "GitHubGameOff"
+  ],
+  "bugs": {
+    "url": "https://github.com/davidwarshaw/moonhauler/issues"
+  },
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack --mode=development",
+    "deploy": "webpack  --mode=production --config webpack.production.config.js",
+    "test": "eslint ./src/**/**.js",
+    "extrude": "npx tile-extruder --tileWidth 16 --tileHeight 16 --input assets/images/tileset.png --output assets/images/tileset_extruded.png"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.3.4",
+    "@babel/plugin-transform-runtime": "^7.11.5",
+    "@babel/polyfill": "^7.0.0",
+    "@babel/preset-env": "^7.3.4",
+    "babel-eslint": "^9.0.0",
+    "babel-loader": "^8.0.0",
+    "browser-sync": "^2.26.12",
+    "browser-sync-webpack-plugin": "^2.2.2",
+    "clean-webpack-plugin": "^0.1.19",
+    "copy-webpack-plugin": "^4.5.2",
+    "eslint": "^5.15.0",
+    "eslint-plugin-import": "^2.14.0",
+    "expose-loader": "^0.7.5",
+    "html-webpack-plugin": "^3.2.0",
+    "prettier": "^2.0.5",
+    "raw-loader": "^0.5.1",
+    "webpack": "^4.18.0",
+    "webpack-cli": "^3.1.0",
+    "zip-webpack-plugin": "^3.0.0"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.11.2",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-node": "^8.0.1",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "phaser": "3.21.0",
+    "rot-js": "^2.1.1"
+  }
+}

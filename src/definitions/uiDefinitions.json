@@ -1,0 +1,17 @@
+{
+  "button-base": {
+    "tileIndex": 25
+  },
+  "button-frame": {
+    "tileIndex": 20
+  },
+  "button-active": {
+    "tileIndex": 21
+  },
+  "fuel-level": {
+    "tileIndex": 27
+  },
+  "wayfinder": {
+    "tileIndex": 28
+  }
+}

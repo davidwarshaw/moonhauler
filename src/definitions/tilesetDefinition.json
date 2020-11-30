@@ -1,0 +1,92 @@
+{
+  "open": {
+    "index": -1
+  },
+  "black": {
+    "index": 60
+  },
+  "big-star": {
+    "index": 61
+  },
+  "small-star-1": {
+    "index": 62
+  },
+  "small-star-2": {
+    "index": 63
+  },
+  "habitat-cylinder": {
+    "index": 50
+  },
+  "habitat-sphere": {
+    "index": 51
+  },
+  "solar-panel-left": {
+    "index": 52
+  },
+  "solar-panel-middle": {
+    "index": 53
+  },
+  "solar-panel-right": {
+    "index": 54
+  },
+  "ground": {
+    "index": 56
+  },
+  "ground-level-1": {
+    "index": 57
+  },
+  "ground-level-2": {
+    "index": 58
+  },
+  "ground-level-3": {
+    "index": 59
+  },
+  "pad-left": {
+    "index": 67
+  },
+  "pad-middle": {
+    "index": 68
+  },
+  "pad-right": {
+    "index": 69
+  },
+  "hut-left": {
+    "index": 70
+  },
+  "hut-middle": {
+    "index": 71
+  },
+  "hut-right": {
+    "index": 73
+  },
+  "hut-right-fore": {
+    "index": 72
+  },
+  "cube-left": {
+    "index": 74
+  },
+  "cube-right": {
+    "index": 75
+  },
+  "tower": {
+    "index": 76
+  },
+  "gantry": {
+    "index": 77
+  },
+  "sloped-window-left": {
+    "index": 78
+  },
+  "sloped-window-right": {
+    "index": 79
+  },
+  "dish": {
+    "index": 64
+  },
+  "antenna-1": {
+    "index": 65
+  },
+  "antenna-2": {
+    "index": 66
+  }
+}

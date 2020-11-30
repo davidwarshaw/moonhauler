@@ -1,0 +1,6 @@
+{
+  "eslint.format.enable": true,
+  "editor.formatOnSave": true,
+  "prettier.singleQuote": true,
+  "editor.tabSize": 2
+}

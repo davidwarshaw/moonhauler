@@ -1,0 +1,222 @@
+{
+  "tycho-docks": {
+    "name": "Tycho City Docks",
+    "x": 372,
+    "y": 284,
+    "description": "Space dock on the outskirts of the Tycho City Geofront",
+    "routes": {
+      "tycho-station": {
+        "map": "crater-hop",
+        "reverse": true,
+        "traffic": "moderate",
+        "cargo": {
+          "description": "Fabrications, finished textiles, potable water, produce and grain",
+          "contract": 5000,
+          "expressSeconds": 45
+        }
+      },
+      "tycho-geofront": {
+        "map": "geofront",
+        "reverse": false,
+        "traffic": "heavy",
+        "cargo": {
+          "description": "Vehicles, heavy equipment, and equipment parts",
+          "contract": 35000,
+          "expressSeconds": 60
+        }
+      },
+      "malapert": {
+        "map": "malapert",
+        "reverse": false,
+        "traffic": "moderate",
+        "cargo": {
+          "description": "Vehicles, equipment, parts and supplies.",
+          "contract": 8000,
+          "expressSeconds": 105
+        }
+      }
+    }
+  },
+  "tycho-geofront": {
+    "name": "Tycho Geofront",
+    "x": 372,
+    "y": 304,
+    "description": "Tens of thousands live and work in the largest Lunar population center. Built into ancient lava tubes, the Geofront descends deep below the surface.",
+    "routes": {
+      "tycho-docks": {
+        "map": "geofront",
+        "reverse": true,
+        "traffic": "heavy",
+        "cargo": {
+          "description": "Bulk ice grain, out of service heavy equipment and vehicles",
+          "contract": 10000,
+          "expressSeconds": 80
+        }
+      }
+    }
+  },
+  "tycho-station": {
+    "name": "Tycho Station",
+    "x": 317,
+    "y": 325,
+    "description": "The main orbital transfer station servicing the Tycho region.",
+    "routes": {
+      "tycho-docks": {
+        "map": "crater-hop",
+        "reverse": false,
+        "traffic": "light",
+        "cargo": {
+          "description": "Earth imports - vehicles and equipment, electronics, textiles, and sundries",
+          "contract": 20000,
+          "expressSeconds": 60
+        }
+      },
+      "gateway": {
+        "map": "gateway",
+        "reverse": false,
+        "traffic": "heavy",
+        "cargo": {
+          "description": "Refined fuel",
+          "contract": 18000,
+          "expressSeconds": 180
+        }
+      },
+      "refinery": {
+        "map": "crater-refinery",
+        "reverse": false,
+        "traffic": "moderate",
+        "cargo": {
+          "description": "Vehicles, equipment, parts and supplies",
+          "contract": 6000,
+          "expressSeconds": 50
+        }
+      }
+    }
+  },
+  "refinery": {
+    "name": "Tycho Refinery",
+    "x": 364,
+    "y": 347,
+    "description": "This large complex in the Tycho outer field processes Lunar ice into rocket fuel.",
+    "routes": {
+      "tycho-station": {
+        "map": "crater-refinery",
+        "reverse": true,
+        "traffic": "moderate",
+        "cargo": {
+          "description": "Refined fuel",
+          "contract": 12000,
+          "expressSeconds": 50
+        }
+      },
+      "mare-nubium": {
+        "map": "refinery-mine",
+        "reverse": false,
+        "traffic": "heavy",
+        "cargo": {
+          "description": "Fuel, vehicles, heavy equipment and parts.",
+          "contract": 8000,
+          "expressSeconds": 105
+        }
+      }
+    }
+  },
+  "mare-nubium": {
+    "name": "Mare Nubium",
+    "x": 450,
+    "y": 383,
+    "description": "Ilmenite mines dot the surrounding area of this metallurgical processing center.",
+    "routes": {
+      "refinery": {
+        "map": "refinery-mine",
+        "reverse": true,
+        "traffic": "heavy",
+        "cargo": {
+          "description": "Titanium and aluminum billets. Gadolinium, cerium, and other rare earths.",
+          "contract": 24000,
+          "expressSeconds": 105
+        }
+      },
+      "mine": {
+        "map": "",
+        "reverse": false
+      }
+    }
+  },
+  "malapert": {
+    "name": "Malapert Array",
+    "x": 315,
+    "y": 195,
+    "description": "This solar power station sits atop Malapert Mountain's eternal light peak.",
+    "routes": {
+      "tycho-docks": {
+        "map": "malapert",
+        "reverse": true,
+        "traffic": "moderate",
+        "cargo": {
+          "description": "Equipment, parts, and waste.",
+          "contract": 5000,
+          "expressSeconds": 60
+        }
+      },
+      "elevator": {
+        "map": "elevator",
+        "reverse": false,
+        "traffic": "light",
+        "cargo": {
+          "description": "Construction materials, equipment and supplies.",
+          "contract": 12000,
+          "expressSeconds": 40
+        }
+      }
+    }
+  },
+  "mine": {
+    "name": "Ilmenite Mines",
+    "x": 450,
+    "y": 403,
+    "description": "A network of narrow shafts crisscrossing through the Lunar bedrock.",
+    "routes": {
+      "mare-nubium": {
+        "map": "",
+        "reverse": true
+      }
+    }
+  },
+  "gateway": {
+    "name": "Gateway Fuel Depot",
+    "x": 106,
+    "y": 273,
+    "description": "Once the main Lunar orbital station, now primarily a refuelling depot for intra solar travel.",
+    "routes": {
+      "tycho-station": {
+        "map": "gateway",
+        "reverse": true,
+        "traffic": "heavy",
+        "cargo": {
+          "description": "Equipment, parts, and waste.",
+          "contract": 4000,
+          "expressSeconds": 40
+        }
+      }
+    }
+  },
+  "elevator": {
+    "name": "Elevator Site",
+    "x": 355,
+    "y": 85,
+    "description": "Construction site of the future Lunar elevator. When completed, this elevator will allow efficient travel between the Lunar south pole and L1.",
+    "routes": {
+      "malapert": {
+        "map": "elevator",
+        "reverse": true,
+        "traffic": "light",
+        "cargo": {
+          "description": "Equipment, parts, and waste.",
+          "contract": 6000,
+          "expressSeconds": 60
+        }
+      }
+    }
+  }
+}

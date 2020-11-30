@@ -1,0 +1,130 @@
+{
+  "command": {
+    "description": "Command Module",
+    "cost": 500000,
+    "repairCost": 1000,
+    "tileIndex": 0,
+    "attachments": [
+      "left"
+    ],
+    "mass": 3.0
+  },
+  "cross": {
+    "description": "Frame, Cross",
+    "cost": 55000,
+    "repairCost": 1000,
+    "tileIndex": 1,
+    "attachments": [
+      "up",
+      "down",
+      "left",
+      "right"
+    ],
+    "mass": 0.4
+  },
+  "beam": {
+    "description": "Frame, Straight",
+    "cost": 30000,
+    "repairCost": 1000,
+    "tileIndex": 2,
+    "attachments": [
+      "left",
+      "right"
+    ],
+    "mass": 0.2
+  },
+  "elbow": {
+    "description": "Frame, \"L\"",
+    "cost": 45000,
+    "repairCost": 1000,
+    "tileIndex": 3,
+    "attachments": [
+      "left",
+      "down"
+    ],
+    "mass": 0.2
+  },
+  "tee": {
+    "description": "Frame, \"T\"",
+    "cost": 50000,
+    "repairCost": 1000,
+    "tileIndex": 4,
+    "attachments": [
+      "left",
+      "right",
+      "down"
+    ],
+    "mass": 0.3
+  },
+  "cargo-empty": {
+    "description": "Container Forks",
+    "cost": 60000,
+    "repairCost": 1000,
+    "tileIndex": 5,
+    "attachments": [
+      "left"
+    ],
+    "mass": 0.1
+  },
+  "fuel-tank": {
+    "description": "Fuel Tank, Spherical",
+    "cost": 150000,
+    "repairCost": 1000,
+    "tileIndex": 10,
+    "attachments": [
+      "right"
+    ],
+    "mass": 0.2,
+    "fuel": {
+      "capacity": 5
+    }
+  },
+  "landing-gear": {
+    "description": "Landing Gear",
+    "cost": 60000,
+    "repairCost": 0,
+    "tileIndex": 11,
+    "attachments": [
+      "right"
+    ],
+    "mass": 0.1
+  },
+  "engine-large": {
+    "description": "Rocket Engine, Heavy Duty",
+    "cost": 350000,
+    "repairCost": 1000,
+    "tileIndex": 12,
+    "attachments": [
+      "right"
+    ],
+    "mass": 1.0,
+    "engine": {
+      "size": "large",
+      "thrust": 0.00004
+    }
+  },
+  "engine-small": {
+    "description": "Rocket Engine, Light Duty",
+    "cost": 250000,
+    "repairCost": 1000,
+    "tileIndex": 14,
+    "attachments": [
+      "right"
+    ],
+    "mass": 0.5,
+    "engine": {
+      "size": "small",
+      "thrust": 0.000017
+    }
+  },
+  "cargo-full": {
+    "description": "Container Forks, Loaded",
+    "cost": 60000,
+    "repairCost": 1000,
+    "tileIndex": 9,
+    "attachments": [
+      "left"
+    ],
+    "mass": 4.0
+  }
+}

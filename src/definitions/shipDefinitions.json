@@ -1,0 +1,9 @@
+{
+  "ship-01": {
+    "description": "Private Spacecraft",
+    "mass": 10,
+    "thrust": 0.00005,
+    "topSpeed": 0.5,
+    "rotationFactor": 0.1
+  }
+}

@@ -1,0 +1,137 @@
+{
+  "crater-hop": {
+    "gravity": 0.02,
+    "spawn": {
+      "x": 16,
+      "y": 87
+    },
+    "goal": {
+      "x": 177,
+      "y": 85
+    },
+    "ships": {
+      "minY": 0,
+      "maxY": 70,
+      "velocity": {
+        "x": 1,
+        "y": 0
+      }
+    }
+  },
+  "geofront": {
+    "gravity": 0.02,
+    "spawn": {
+      "x": 9,
+      "y": 40
+    },
+    "goal": {
+      "x": 86,
+      "y": 144
+    },
+    "ships": {
+      "minY": 10,
+      "maxY": 50,
+      "velocity": {
+        "x": 1,
+        "y": 0
+      }
+    }
+  },
+  "gateway": {
+    "gravity": 0.02,
+    "stationGoal": true,
+    "spawn": {
+      "x": 46,
+      "y": 297
+    },
+    "goal": {
+      "x": 54,
+      "y": 31
+    },
+    "ships": {
+      "minY": 40,
+      "maxY": 290,
+      "velocity": {
+        "x": 1,
+        "y": 0
+      }
+    }
+  },
+  "crater-refinery": {
+    "gravity": 0.02,
+    "spawn": {
+      "x": 15,
+      "y": 91
+    },
+    "goal": {
+      "x": 186,
+      "y": 69
+    },
+    "ships": {
+      "minY": 0,
+      "maxY": 62,
+      "velocity": {
+        "x": 1,
+        "y": 0
+      }
+    }
+  },
+  "refinery-mine": {
+    "gravity": 0.02,
+    "spawn": {
+      "x": 11,
+      "y": 80
+    },
+    "goal": {
+      "x": 252,
+      "y": 86
+    },
+    "ships": {
+      "minY": 0,
+      "maxY": 20,
+      "velocity": {
+        "x": 1,
+        "y": 0
+      }
+    }
+  },
+  "malapert": {
+    "gravity": 0.02,
+    "spawn": {
+      "x": 16,
+      "y": 188
+    },
+    "goal": {
+      "x": 184,
+      "y": 36
+    },
+    "ships": {
+      "minY": 0,
+      "maxY": 184,
+      "velocity": {
+        "x": 1,
+        "y": 1
+      }
+    }
+  },
+  "elevator": {
+    "gravity": 0.02,
+    "stationGoal": true,
+    "spawn": {
+      "x": 55,
+      "y": 295
+    },
+    "goal": {
+      "x": 55,
+      "y": 36
+    },
+    "ships": {
+      "minY": 67,
+      "maxY": 270,
+      "velocity": {
+        "x": 1,
+        "y": 0
+      }
+    }
+  }
+}

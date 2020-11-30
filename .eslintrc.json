@@ -1,0 +1,19 @@
+{
+  "env": {
+    "browser": true,
+    "es6": true,
+    "commonjs": true
+  },
+  "parserOptions": {
+    "sourceType": "module"
+  },
+  "extends": "prettier",
+  "globals": {
+    "process": true,
+    "__dirname": true,
+    "Phaser": true,
+    "PIXI": true,
+    "p2": true,
+    "__DEV__": true
+  }
+}
