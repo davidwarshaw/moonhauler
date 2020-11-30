@@ -67,7 +67,7 @@ module.exports = {
     new CopyWebpackPlugin([{ from: "assets", to: "assets" }]),
     new ZipPlugin({
       path: "../",
-      filename: `moon-shooter-${PACKAGE.version}.zip`,
+      filename: `moonhauler-${PACKAGE.version}.zip`,
     }),
   ],
   module: {
