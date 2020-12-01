@@ -23,8 +23,10 @@ export default class Player {
 
     this.fuelInTanks = this.getNumberFuelTanks() * FUEL_PER_TANK;
     this.enginesLockedOut = false;
+    this.fuelLeaks = 0;
 
-    const spawn = this.map.getSpawn(this.getShipHeight());
+    const shipHeight = this.getShipHeight();
+    const spawn = this.map.getSpawn(shipHeight);
     const worldSpawn = TileMath.addHalfTile(this.map.tilemap.tileToWorldXY(spawn.x, spawn.y));
 
     shipDefinition.forEach((row, y) =>
@@ -158,7 +160,7 @@ export default class Player {
           engineSprite.thrust(deltaThrust);
         });
       
-      this.fuelInTanks -= fuelUsed;
+      this.fuelInTanks -= fuelUsed * this.fuelLeaks;
       if (this.fuelInTanks < 0) {
         this.fuelInTanks = 0;
         this.allEnginesOff();
@@ -225,6 +227,10 @@ export default class Player {
     const fuelTanksMass = emptyTankMass + (fuelLevel * FUEL_MASS_PER_TANK);
     // console.log(`fuelTanksMass: ${fuelTanksMass}`);
     this.fuelTankSprites.forEach(fuelTankSprite => fuelTankSprite.setMass(fuelTanksMass));
+  }
+
+  addFuelLeak() {
+    this.fuelLeaks += 1;
   }
 
 }

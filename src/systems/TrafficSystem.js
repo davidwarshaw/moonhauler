@@ -72,6 +72,7 @@ export default class TrafficSystem {
       inverseMass: 1 / shipDefinition.mass,
       ignoreGravity: true,
       frictionAir: 0,
+      chamfer: 4,
     };
     const positionX = this.map.tilemap.widthInPixels * (properties.rng.getPercentage() / 100);
     const positionYTile = minY + ((maxY - minY) * (properties.rng.getPercentage() / 100));

@@ -23,11 +23,11 @@ export default class DamageSystem {
 
   damageModule(moduleBody, moduleName, moduleType, struckBody) {
     if (this.modules[moduleName]) {
-      return;
+      return false;
     }
     const { speed } = this.player.commandModule.body;
     if (speed < DAMAGE_SPEED_THRESHOLD) {
-      return;
+      return false;
     }
 
     const { description, repairCost } = moduleDefinitions[moduleType];
@@ -53,6 +53,8 @@ export default class DamageSystem {
       this.damages.push({ description, repairCost });
       this.scene.events.emit('damage-ship', `-$${repairCost.toLocaleString()} ${description}`);
     }
+
+    return true;
   }
 
   getStats() {

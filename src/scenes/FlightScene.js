@@ -10,6 +10,7 @@ import Player from '../sprites/Player';
 
 import DamageSystem from '../systems/DamageSystem';
 import TrafficSystem from '../systems/TrafficSystem';
+import SmokeSystem from '../systems/SmokeSystem';
 
 const SPEED_THRESHOLD = 0.10;
 const NO_SPEED_CRASH_TIME = 10000;
@@ -50,6 +51,7 @@ export default class FlightScene extends Phaser.Scene {
 
     this.damageSystem = new DamageSystem(this, this.player);
     this.trafficSystem = new TrafficSystem(this, this.map, currentRoute, this.mapDefinition);
+    this.smokeSystem = new SmokeSystem(this, this.player);
 
     if (this.mapDefinition.stationGoal) {
       this.stationDockable = true;
@@ -116,7 +118,10 @@ export default class FlightScene extends Phaser.Scene {
         if (this.map.goalIsStation() && moduleType === 'command' && tileType === 'docking-ring') {
           this.checkIfDocking(tileBody);
         } else {
-          this.damageSystem.damageModule(moduleBody, moduleName, moduleType, tileBody);
+          const wasDamaged = this.damageSystem.damageModule(moduleBody, moduleName, moduleType, tileBody);
+          if (moduleType === 'fuel-tank' && wasDamaged) {
+            this.smokeSystem.start(moduleName, moduleBody);
+          }
         }
       }
     }
