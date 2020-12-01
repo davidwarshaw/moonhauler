@@ -16,9 +16,10 @@ export default class TitleScene extends Phaser.Scene {
 
     this.font = new Font(this);
 
-    this.sounds = {
-      music: this.sound.add('music-menu'),
-    }
+    this.playState.music ={
+      menu: this.sound.add('music-menu'),
+      flight: this.sound.add('music-flight'),
+    };
 
     const centerX = properties.width / 2;
     const top = 80;
@@ -37,7 +38,7 @@ export default class TitleScene extends Phaser.Scene {
       },
     ], centerX, top + 80);
 
-    this.sounds.music.play({ loop: true });
+    this.playState.music.menu.play({ loop: true });
   }
 
   offsetForText(text) {

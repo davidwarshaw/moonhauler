@@ -1,5 +1,7 @@
 import properties from '../properties';
 
+import FlightHudScene from "../scenes/FlightHudScene";
+
 import Menu from '../ui/Menu';
 
 export default class CrashScene extends Phaser.Scene {
@@ -26,7 +28,7 @@ export default class CrashScene extends Phaser.Scene {
         text: 'retry',
         cb: () => {
           console.log('CrashScene.retry');
-          this.scene.start('FlightHudScene', this.playState);
+          this.scene.add('FlightHudScene', FlightHudScene, true, this.playState);
           this.scene.start('FlightScene', this.playState);
           this.scene.start('FlightBackgroundScene', this.playState);
         }

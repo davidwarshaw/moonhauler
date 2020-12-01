@@ -77,7 +77,7 @@ export default class Map {
         return this.tilemap.tileToWorldXY(x, i).y - worldY;
       }
     }
-    return null;
+    return -1;
   }
 
   getGoalWorldXY() {

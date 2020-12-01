@@ -29,6 +29,12 @@ export default class FlightScene extends Phaser.Scene {
   }
 
   create() {
+    this.sounds = {
+      dock: this.sound.add('dock'),
+    }
+    this.playState.music.menu.stop();
+    this.playState.music.flight.play({ loop: true });
+
     const { currentNode, destinationNode } = this.playState;
     const currentRoute = routeDefinitions[currentNode].routes[destinationNode];
 
@@ -86,8 +92,6 @@ export default class FlightScene extends Phaser.Scene {
         continue;
       }
       // console.log(`bodyA.label: ${bodyA.label} vs bodyB.label: ${bodyB.label}`);
-      console.log(bodyA);
-      console.log(bodyB);
       if ((bodyA.label.startsWith('ship') && bodyB.label === 'Rectangle Body') ||
         (bodyB.label.startsWith('ship') && bodyA.label === 'Rectangle Body')) {
 
@@ -99,6 +103,10 @@ export default class FlightScene extends Phaser.Scene {
         continue;
       } else if (bodyA.label.startsWith('module') || bodyB.label.startsWith('module')) {
 
+        if (this.dockedAtStation) {
+          continue;
+        }
+
         const moduleBody = bodyA.label.startsWith('module') ? bodyA : bodyB;
         const moduleName = moduleBody.label.split('+')[1];
         const moduleType = moduleName.split(':')[2];
@@ -108,7 +116,7 @@ export default class FlightScene extends Phaser.Scene {
         if (this.map.goalIsStation() && moduleType === 'command' && tileType === 'docking-ring') {
           this.checkIfDocking(tileBody);
         } else {
-          this.damageSystem.damageModule(moduleBody, moduleName, moduleType);
+          this.damageSystem.damageModule(moduleBody, moduleName, moduleType, tileBody);
         }
       }
     }
@@ -154,6 +162,7 @@ export default class FlightScene extends Phaser.Scene {
         this.player.engineLockout();
         this.dockingConstraint = this.matter.add.constraint(this.player.commandModule, dockingTileBody, 16, 0.8);
         this.dockedAtStation = true;
+        this.sounds.dock.play();
       } else {
         this.setUndockable();
       }
@@ -177,7 +186,10 @@ export default class FlightScene extends Phaser.Scene {
       damageIncidents
     };
 
-    this.scene.stop('FlightHudScene');
+    this.playState.music.flight.stop();
+    this.playState.music.menu.play({ loop: true });
+
+    this.scene.remove('FlightHudScene');
     this.scene.stop('FlightBackgroundScene');
     this.scene.start('LandScene', this.playState);    
   }
@@ -187,7 +199,10 @@ export default class FlightScene extends Phaser.Scene {
     this.belowSpeed = null;
     this.startTime = null;
 
-    this.scene.stop('FlightHudScene');
+    this.playState.music.flight.stop();
+    this.playState.music.menu.play({ loop: true });
+
+    this.scene.remove('FlightHudScene');
     this.scene.stop('FlightBackgroundScene');
     this.scene.start('CrashScene', this.playState);
   }

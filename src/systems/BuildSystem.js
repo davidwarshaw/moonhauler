@@ -16,10 +16,14 @@ export default class BuildSystem {
     this.map = map;
     this.layer = layer;
 
+    this.unconnecteds = null;
+    
+    this.buildCost = null;
+
     this.resetShip();
   }
 
-  async pointerDown(pointer) {
+  pointerDown(pointer) {
     const worldPoint = this.scene.cameras.main.getWorldPoint(pointer.x, pointer.y);
     const tilePoint = this.map.worldToTileXY(worldPoint.x, worldPoint.y);
     const tile = this.layer.getTileAt(tilePoint.x, tilePoint.y);
@@ -31,10 +35,7 @@ export default class BuildSystem {
     }
   }
 
-  async pointerUp() {
-  }
-
-  async buttonSelect(buttonData) {
+  buttonSelect(buttonData) {
     const { buttonFunction, type } = buttonData;
     const { x, y } = this.currentlySelectedPoint;
     switch (buttonFunction) {
@@ -94,14 +95,6 @@ export default class BuildSystem {
     this.scene.events.emit('tile-select', { module, funds, buildCost });
   }
 
-  recreate() {
-    this.recreateField();
-    this.recreateShip();
-    this.recreateAddableTiles();
-    this.recreateUnconnectedImages();
-    this.recreateBuildCost()
-  }
-
   resetShip() {
     this.shipDefinition = JSON.parse(JSON.stringify(this.scene.playState.shipDefinition));
 
@@ -115,6 +108,14 @@ export default class BuildSystem {
     this.currentlySelectedFrame = this.scene.add.image(worldPoint.x, worldPoint.y, 'tileset-spritesheet', SELECT_FRAME_TILE_INDEX);
 
     this.recreate();
+  }
+
+  recreate() {
+    this.recreateField();
+    this.recreateShip();
+    this.recreateAddableTiles();
+    this.recreateUnconnectedImages();
+    this.recreateBuildCost()
   }
 
   done() {
@@ -232,7 +233,6 @@ export default class BuildSystem {
   rotateModule(x, y) {
     const tile = this.layer.getTileAt(x, y);
     tile.rotation = Phaser.Math.Wrap(tile.rotation + Math.PI / 2, 0, 2 * Math.PI);
-    console.log(tile.rotation);
     this.shipDefinition[y][x].angle = tile.rotation;
   }
 

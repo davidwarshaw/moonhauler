@@ -42,7 +42,9 @@ export default class FlightHudScene extends Phaser.Scene {
 
   setWayfinder(vector) {
     const distanceMeters = Math.round((vector.distance / properties.tileWidth) * METERS_PER_TILE);
-    const elevationMeters = Math.round((vector.elevation / properties.tileWidth) * METERS_PER_TILE);
+    const elevationMeters = vector.elevation >= 0 ?
+      Math.round((vector.elevation / properties.tileWidth) * METERS_PER_TILE) :
+      "999+";
     const speedMetersPerSecond = Math.round((vector.speed / properties.tileWidth) * METERS_PER_TILE * 100);
     const smoothedSpeedMetersPerSecond = this.enginesHaveBeenStarted ? speedMetersPerSecond : 0;
     const flightSeconds = Math.round(vector.flightTime / 1000);
@@ -61,12 +63,13 @@ export default class FlightHudScene extends Phaser.Scene {
     if (text) {
       this.damageMessages.push(text);
     }
-    const damageText = this.damageMessages.join('\n');
-    this.damageText.setText(damageText);
+    const beforeText = this.damageMessages.join('\n');
+    this.damageText.setText(beforeText);
+    
     this.time.delayedCall(properties.damageCooldown, () => {
       this.damageMessages.shift();
-      const damageText = this.damageMessages.join('\n');
-      this.damageText.setText(damageText);
+      const afterText = this.damageMessages.join('\n');
+      this.damageText.setText(afterText);
     });
   }
 

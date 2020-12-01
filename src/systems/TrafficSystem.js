@@ -4,6 +4,13 @@ import shipdefinitions from '../definitions/shipDefinitions.json';
 
 const HOME_Y_THRESHOLD = 20;
 
+const SHIP_RATIOS = {
+  1:3,
+  2:2,
+  3:2,
+  4:1,
+}
+
 export default class TrafficSystem {
   constructor(scene, map, currentRoute, currentMap) {
     this.scene = scene;
@@ -51,7 +58,7 @@ export default class TrafficSystem {
   }
 
   addShip() {
-    const i = 1;
+    const i = properties.rng.getWeightedValue(SHIP_RATIOS);
     const shipId = `ship-0${i}`;
     const shipDefinition = shipdefinitions[shipId];
     const { minY, maxY, velocity } = this.currentMap.ships;

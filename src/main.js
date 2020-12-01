@@ -37,8 +37,8 @@ const config = {
     BootScene,
     TitleScene,
     RouteSelectScene,
-    BuildScene, BuildHudScene,
-    FlightBackgroundScene, FlightScene, FlightHudScene,
+    BuildScene,
+    FlightBackgroundScene, FlightScene,
     CrashScene, LandScene],
 };
 

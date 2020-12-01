@@ -8,7 +8,7 @@
       "tycho-station": {
         "map": "crater-hop",
         "reverse": true,
-        "traffic": "moderate",
+        "traffic": "light",
         "cargo": {
           "description": "Fabrications, finished textiles, potable water, produce and grain",
           "contract": 5000,
@@ -18,10 +18,10 @@
       "tycho-geofront": {
         "map": "geofront",
         "reverse": false,
-        "traffic": "heavy",
+        "traffic": "moderate",
         "cargo": {
           "description": "Vehicles, heavy equipment, and equipment parts",
-          "contract": 35000,
+          "contract": 25000,
           "expressSeconds": 60
         }
       },
@@ -31,7 +31,7 @@
         "traffic": "moderate",
         "cargo": {
           "description": "Vehicles, equipment, parts and supplies.",
-          "contract": 8000,
+          "contract": 14000,
           "expressSeconds": 105
         }
       }
@@ -46,10 +46,10 @@
       "tycho-docks": {
         "map": "geofront",
         "reverse": true,
-        "traffic": "heavy",
+        "traffic": "moderate",
         "cargo": {
           "description": "Bulk ice grain, out of service heavy equipment and vehicles",
-          "contract": 10000,
+          "contract": 35000,
           "expressSeconds": 80
         }
       }
@@ -67,7 +67,7 @@
         "traffic": "light",
         "cargo": {
           "description": "Earth imports - vehicles and equipment, electronics, textiles, and sundries",
-          "contract": 20000,
+          "contract": 8000,
           "expressSeconds": 60
         }
       },
@@ -77,7 +77,7 @@
         "traffic": "heavy",
         "cargo": {
           "description": "Refined fuel",
-          "contract": 18000,
+          "contract": 32000,
           "expressSeconds": 180
         }
       },
@@ -87,7 +87,7 @@
         "traffic": "moderate",
         "cargo": {
           "description": "Vehicles, equipment, parts and supplies",
-          "contract": 6000,
+          "contract": 11000,
           "expressSeconds": 50
         }
       }
@@ -105,7 +105,7 @@
         "traffic": "moderate",
         "cargo": {
           "description": "Refined fuel",
-          "contract": 12000,
+          "contract": 9000,
           "expressSeconds": 50
         }
       },
@@ -115,7 +115,7 @@
         "traffic": "heavy",
         "cargo": {
           "description": "Fuel, vehicles, heavy equipment and parts.",
-          "contract": 8000,
+          "contract": 12000,
           "expressSeconds": 105
         }
       }
@@ -133,7 +133,7 @@
         "traffic": "heavy",
         "cargo": {
           "description": "Titanium and aluminum billets. Gadolinium, cerium, and other rare earths.",
-          "contract": 24000,
+          "contract": 8000,
           "expressSeconds": 105
         }
       },
@@ -162,10 +162,10 @@
       "elevator": {
         "map": "elevator",
         "reverse": false,
-        "traffic": "light",
+        "traffic": "heavy",
         "cargo": {
           "description": "Construction materials, equipment and supplies.",
-          "contract": 12000,
+          "contract": 42000,
           "expressSeconds": 40
         }
       }
@@ -195,7 +195,7 @@
         "traffic": "heavy",
         "cargo": {
           "description": "Equipment, parts, and waste.",
-          "contract": 4000,
+          "contract": 16000,
           "expressSeconds": 40
         }
       }
@@ -210,10 +210,10 @@
       "malapert": {
         "map": "elevator",
         "reverse": true,
-        "traffic": "light",
+        "traffic": "heavy",
         "cargo": {
           "description": "Equipment, parts, and waste.",
-          "contract": 6000,
+          "contract": 33000,
           "expressSeconds": 60
         }
       }

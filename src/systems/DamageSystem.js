@@ -1,6 +1,7 @@
 import properties from '../properties';
 
 import moduleDefinitions from '../definitions/moduleDefinitions.json';
+import shipdefinitions from '../definitions/shipDefinitions.json';
 
 const DAMAGE_SPEED_THRESHOLD = 0.30;
 const IMPACT_SPEED_THRESHOLDS = [0.5, 1.0];
@@ -20,7 +21,7 @@ export default class DamageSystem {
     }
   }
 
-  damageModule(moduleBody, moduleName, moduleType) {
+  damageModule(moduleBody, moduleName, moduleType, struckBody) {
     if (this.modules[moduleName]) {
       return;
     }
@@ -44,6 +45,13 @@ export default class DamageSystem {
       this.sounds.impactMedium.play();
     } else {
       this.sounds.impactHeavy.play();
+    }
+
+    if (struckBody.label.startsWith('ship')) {
+      const shipId = struckBody.label.split('+')[1];
+      const { description, repairCost } = shipdefinitions[shipId];
+      this.damages.push({ description, repairCost });
+      this.scene.events.emit('damage-ship', `-$${repairCost.toLocaleString()} ${description}`);
     }
   }
 

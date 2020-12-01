@@ -38,8 +38,8 @@ export default class BuildScene extends Phaser.Scene {
   }
 
   done() {
-    this.scene.stop('BuildHudScene');
-    
+    // this.scene.stop('BuildHudScene');
+    this.scene.remove('BuildHudScene');
     this.scene.start('RouteSelectScene', this.playState);
   }
 }

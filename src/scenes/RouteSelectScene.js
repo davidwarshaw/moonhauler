@@ -6,6 +6,9 @@ import uiDefinitions from '../definitions/uiDefinitions.json';
 
 import utils from '../utils/utils';
 
+import BuildHudScene from "../scenes/BuildHudScene";
+import FlightHudScene from "../scenes/FlightHudScene";
+
 import Menu from '../ui/Menu';
 import Font from '../ui/Font';
 
@@ -49,7 +52,8 @@ export default class RouteSelectScene extends Phaser.Scene {
       {
         text: 'shipyard',
         cb: () => {
-          this.scene.start('BuildHudScene', this.playState);
+          this.scene.add('BuildHudScene', BuildHudScene, true, this.playState);
+          // this.scene.start('BuildHudScene', this.playState);
           this.scene.start('BuildScene', this.playState);
         }
       },
@@ -59,7 +63,7 @@ export default class RouteSelectScene extends Phaser.Scene {
         cb: () => {
           // this.scene.start('CrashScene', this.playState);
           // this.scene.start('LandScene', this.playState);
-          this.scene.start('FlightHudScene', this.playState);
+          this.scene.add('FlightHudScene', FlightHudScene, true, this.playState);
           this.scene.start('FlightScene', this.playState);
           this.scene.start('FlightBackgroundScene', this.playState);
         }
@@ -68,7 +72,7 @@ export default class RouteSelectScene extends Phaser.Scene {
   }
 
   createNodeMenu() {
-    const menuConfig = Object.entries(routeDefinitions).map(e => {
+    const menuConfig = Object.entries(routeDefinitions).filter(e => e[0] !== 'mine').map(e => {
       const nodeKey = e[0];
       const node = e[1];
       const inactive = !routeDefinitions[this.playState.currentNode].routes[nodeKey] ||
@@ -108,10 +112,10 @@ export default class RouteSelectScene extends Phaser.Scene {
   createLines() {
     this.graphics.clear();
 
-    Object.keys(routeDefinitions).forEach(nodeFromKey => {
+    Object.keys(routeDefinitions).filter(key => key !== 'mine').forEach(nodeFromKey => {
       const nodeFrom = routeDefinitions[nodeFromKey];
       
-      Object.keys(nodeFrom.routes).forEach(nodeToKey => {
+      Object.keys(nodeFrom.routes).filter(key => key !== 'mine').forEach(nodeToKey => {
         const { x, y } = routeDefinitions[nodeToKey];
         let lineColor = this.pathIsSelected(nodeFromKey, nodeToKey) ? CYAN : BLACK;
         this.graphics.lineStyle(2, lineColor, 1.0);

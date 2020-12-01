@@ -17,6 +17,11 @@ export default class BuildHudScene extends Phaser.Scene {
 
   create() {
     this.font = new Font(this);
+    
+    this.sounds = {
+      edit: this.sound.add('edit'),
+      module: this.sound.add('module'),
+    }
 
     this.editFunctions = [
       { name: "rotate", tileIndex: 32 },
@@ -57,8 +62,10 @@ export default class BuildHudScene extends Phaser.Scene {
       const image = this.add.image(x, y, 'tileset-spritesheet', editFunction.tileIndex)
         .setInteractive();
       image.on('pointerdown', () => {
-        this.events.emit('button-select', { buttonFunction: editFunction.name });
+        this.sounds.edit.play();
+        return this.events.emit('button-select', { buttonFunction: editFunction.name });
       });
+        
       
       const frame = this.add.image(x, y, 'tileset-spritesheet', uiDefinitions['button-frame'].tileIndex);  
       
@@ -83,8 +90,9 @@ export default class BuildHudScene extends Phaser.Scene {
         
         const image = this.add.image(x, y, 'tileset-spritesheet', module.tileIndex)
           .setInteractive();
-        image.on('pointerdown', () => {
-          this.events.emit('button-select', { buttonFunction: 'module', type: moduleName });
+        image.on('pointerdown', () =>{
+          this.sounds.module.play();
+          return this.events.emit('button-select', { buttonFunction: 'module', type: moduleName });
         });
         
         const frame = this.add.image(x, y, 'tileset-spritesheet', uiDefinitions['button-frame'].tileIndex);  

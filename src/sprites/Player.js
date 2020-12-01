@@ -96,6 +96,10 @@ export default class Player {
       }));
     
     this.updateFuelTanksMass();
+
+    this.sounds = {
+      rocket: scene.sound.add('rocket'),
+    }
   }
 
   engineOn(engineName) {
@@ -109,12 +113,18 @@ export default class Player {
     const engineSprite = this.engineSprites[engineName];
     engineSprite.moduleDefinition.firing = true;
     engineSprite.anims.play(`${engineName}-engine-on`);
+    
+    this.sounds.rocket.play({ volume: 0.15, rate: 0.2, loop: true });
   }
 
   engineOff(engineName) {
     const engineSprite = this.engineSprites[engineName];
     engineSprite.moduleDefinition.firing = false;
     engineSprite.anims.play(`${engineName}-engine-off`);
+
+    if (!this.anEngineIsOn()) {
+      this.sounds.rocket.stop();
+    }
   }
 
   allEnginesOff() {

@@ -1,8 +1,33 @@
 {
   "ship-01": {
     "description": "Private Spacecraft",
+    "repairCost": 15000,
     "mass": 10,
     "thrust": 0.00005,
+    "topSpeed": 0.8,
+    "rotationFactor": 0.1
+  },
+  "ship-02": {
+    "description": "Private Spacecraft",
+    "repairCost": 12000,
+    "mass": 15,
+    "thrust": 0.0001,
+    "topSpeed": 0.7,
+    "rotationFactor": 0.1
+  },
+  "ship-03": {
+    "description": "Container Ship",
+    "repairCost": 8000,
+    "mass": 20,
+    "thrust": 0.001,
+    "topSpeed": 0.5,
+    "rotationFactor": 0.1
+  },
+  "ship-04": {
+    "description": "Tanker",
+    "repairCost": 11000,
+    "mass": 40,
+    "thrust": 0.001,
     "topSpeed": 0.5,
     "rotationFactor": 0.1
   }
