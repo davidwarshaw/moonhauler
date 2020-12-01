@@ -32,6 +32,7 @@ export default class FlightScene extends Phaser.Scene {
   create() {
     this.sounds = {
       dock: this.sound.add('dock'),
+      dropAlarm: this.sound.add('drop-alarm'),
     }
     this.playState.music.menu.stop();
     this.playState.music.flight.play({ loop: true });
@@ -79,6 +80,10 @@ export default class FlightScene extends Phaser.Scene {
       return this.player.engineOn(moduleName);
     });
     hudScene.events.on('engine-off', moduleName => this.player.engineOff(moduleName));
+
+    if (this.mapDefinition.stationGoal && currentRoute.reverse) {
+      this.sounds.dropAlarm.play();
+    }
   }
 
   collisionStart(event) {

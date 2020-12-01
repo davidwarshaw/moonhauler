@@ -76,6 +76,7 @@ export default class BootScene extends Phaser.Scene {
     this.load.audio('land', 'assets/audio/sfx_sounds_fanfare3.wav');
     this.load.audio('crash', 'assets/audio/sfx_alarm_loop8.wav');
     this.load.audio('dock', 'assets/audio/sfx_sound_depressurizing.wav');
+    this.load.audio('drop-alarm', 'assets/audio/sfx_alarm_loop2.wav');
     this.load.audio('rocket', 'assets/audio/sfx_vehicle_engineloop.wav');
 
     const shipDefinition = [
@@ -93,7 +94,7 @@ export default class BootScene extends Phaser.Scene {
     };
     this.fuel = 100;
     this.playState.funds = 22000;
-    this.playState.currentNode = "tycho-docks";
+    this.playState.currentNode = "elevator";
     this.playState.flightStats = {
       deliveryTime: 3000,
       damageCost: -2000,
