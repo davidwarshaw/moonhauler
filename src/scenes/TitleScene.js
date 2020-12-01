@@ -32,7 +32,7 @@ export default class TitleScene extends Phaser.Scene {
       {
         text: 'start',
         cb: () => {
-          //this.sounds.newGame.play();
+          // this.scene.start('CrashScene', this.playState);
           this.scene.start('RouteSelectScene', this.playState);
         }
       },

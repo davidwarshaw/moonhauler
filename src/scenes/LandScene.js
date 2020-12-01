@@ -18,7 +18,6 @@ export default class LandScene extends Phaser.Scene {
   }
 
   create() {
-
     this.font = new Font(this);
     
     this.sounds = {

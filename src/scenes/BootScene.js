@@ -94,7 +94,7 @@ export default class BootScene extends Phaser.Scene {
     };
     this.fuel = 100;
     this.playState.funds = 22000;
-    this.playState.currentNode = "elevator";
+    this.playState.currentNode = "tycho-station";
     this.playState.flightStats = {
       deliveryTime: 3000,
       damageCost: -2000,
