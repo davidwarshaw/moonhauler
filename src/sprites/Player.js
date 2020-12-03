@@ -160,7 +160,7 @@ export default class Player {
           engineSprite.thrust(deltaThrust);
         });
       
-      this.fuelInTanks -= fuelUsed * this.fuelLeaks;
+      this.fuelInTanks -= fuelUsed * (1 + this.fuelLeaks);
       if (this.fuelInTanks < 0) {
         this.fuelInTanks = 0;
         this.allEnginesOff();
