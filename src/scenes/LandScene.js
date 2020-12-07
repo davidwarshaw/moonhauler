@@ -36,8 +36,8 @@ export default class LandScene extends Phaser.Scene {
     const contract = this.destination.cargo.contract;
     const expressSeconds = this.destination.cargo.expressSeconds;
     const { deliveryTime, damageCost, damageIncidents } = this.playState.flightStats;
-    const maxDamage = num * 10000;
-    const limitedDamage = damageCost > maxDamage ? maxDamage : damageCost;
+    const maxDamage = -1 * num * 10000;
+    const limitedDamage = damageCost < maxDamage ? maxDamage : damageCost;
     const paid = num * contract;
     const bonus = (deliveryTime / 1000) <= expressSeconds ? paid * 0.2 : 0;
     const profit = paid + bonus + limitedDamage;
@@ -59,7 +59,7 @@ export default class LandScene extends Phaser.Scene {
     margin += 16;
     this.title = this.font.render(centerX + this.offsetForText(text), top + margin, text);
 
-    text = `${damageIncidents} Damage Incidents`
+    text = `${damageIncidents} Damage Incidents, Deductible: ${maxDamage.toLocaleString()}`
     margin += 16;
     this.title = this.font.render(centerX + this.offsetForText(text), top + margin, text);
 

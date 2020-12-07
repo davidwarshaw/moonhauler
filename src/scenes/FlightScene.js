@@ -80,6 +80,7 @@ export default class FlightScene extends Phaser.Scene {
       return this.player.engineOn(moduleName);
     });
     hudScene.events.on('engine-off', moduleName => this.player.engineOff(moduleName));
+    hudScene.events.on('sos', () => this.gameOver());
 
     if (this.mapDefinition.stationGoal && currentRoute.reverse) {
       this.sounds.dropAlarm.play();

@@ -8,6 +8,12 @@ import TileMath from "../utils/TileMath";
 import Font from '../ui/Font';
 
 const METERS_PER_TILE = 5;
+const KEYCHARS_FOR_DIRECTIONS = {
+  'up': 'S',
+  'down': 'W',
+  'left': 'D',
+  'right': 'A',
+};
 
 export default class FlightHudScene extends Phaser.Scene {
   constructor() {
@@ -22,8 +28,21 @@ export default class FlightHudScene extends Phaser.Scene {
     this.font = new Font(this);
 
     this.enginesHaveBeenStarted = false;
-
+    this.enginesForDirection = {
+      'up': [],
+      'down': [],
+      'left': [],
+      'right': [],
+    };
+    this.keys = {
+      sos: this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC),
+      up: this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S),
+      down: this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W),
+      left: this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D),
+      right: this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A)
+    };
     this.engineControls = this.createEngineControls();
+
     this.fuelGauge = this.createFuelGauge();
     this.setFuelLevel(1);
     this.wayfinder = this.createWayfinder();
@@ -34,6 +53,19 @@ export default class FlightHudScene extends Phaser.Scene {
     flightScene.events.on('fuel-level-change', level => this.setFuelLevel(level));
     flightScene.events.on('wayfinder-change', vector => this.setWayfinder(vector));
     flightScene.events.on('damage-ship', text => this.setDamageText(text));
+  }
+
+  update() {
+    Object.keys(this.enginesForDirection).forEach(direction => {
+      const key = this.keys[direction];
+      if (Phaser.Input.Keyboard.JustDown(key) || Phaser.Input.Keyboard.JustUp(key)) {
+        this.toggleEnginesForDirection(direction);
+      }
+    });
+
+    if (Phaser.Input.Keyboard.JustDown(this.keys.sos)) {
+      this.events.emit('sos', {});
+    }
   }
 
   setFuelLevel(level) {
@@ -73,6 +105,23 @@ export default class FlightHudScene extends Phaser.Scene {
     });
   }
 
+  toggleEnginesForDirection(direction) {
+    this.enginesForDirection[direction].forEach(engine => {
+      const { engineImage, activeImage, module } = engine;
+      this.toggleEngine(engineImage, activeImage, module)
+    });
+  }
+
+  toggleEngine(engineImage, activeImage, module) {
+    // Toggle engine firing
+    this.enginesHaveBeenStarted = true;
+    engineImage.setData('engine-on', !engineImage.getData('engine-on'));
+    activeImage.visible = engineImage.getData('engine-on');
+    
+    const event = engineImage.getData('engine-on') ? 'engine-on' : 'engine-off';
+    this.events.emit(event, module.name);
+  }
+
   createEngineControls() {
     const engineRows = this.playState.shipDefinition
       .map((row) =>
@@ -106,21 +155,14 @@ export default class FlightHudScene extends Phaser.Scene {
         const activeImage = this.add.image(engineX, rowY, 'tileset-spritesheet', uiDefinitions['button-active'].tileIndex);
         activeImage.visible = false;
 
+        const keyImage = this.createKeyImage(engineX, rowY, engineImage, activeImage, module);
+
         engineImage.setData('engine-on', false);
-        engineImage.on('pointerdown', () => {
-          
-          // Toggle engine firing
-          this.enginesHaveBeenStarted = true;
-          engineImage.setData('engine-on', !engineImage.getData('engine-on'));
-          activeImage.visible = engineImage.getData('engine-on');
-          
-          const event = engineImage.getData('engine-on') ? 'engine-on' : 'engine-off';
-          this.events.emit(event, module.name);
-        });
+        engineImage.on('pointerdown', () => this.toggleEngine(engineImage, activeImage, module));
 
         const frameImage = this.add.image(engineX, rowY, 'tileset-spritesheet', uiDefinitions['button-frame'].tileIndex);
         
-        return { baseImage, engineImage, activeImage, frameImage };
+        return { baseImage, engineImage, activeImage, frameImage, keyImage };
       })
     });
 
@@ -168,6 +210,23 @@ export default class FlightHudScene extends Phaser.Scene {
     const y = properties.tileHeight + 8;
     const damageText = this.font.render(x, y, '');
     return damageText;
+  }
+
+  createKeyImage(engineX, rowY, engineImage, activeImage, module) {
+    let direction = 'right';
+    if (module.angle === 0.5 * Math.PI) {
+      direction = 'down';
+    } else if (module.angle === 1 * Math.PI) {
+      direction = 'left';
+    } else if (module.angle === 1.5 * Math.PI) {
+      direction = 'up';
+    }
+
+    this.enginesForDirection[direction].push({ engineImage, activeImage, module });
+
+    const keyChar = KEYCHARS_FOR_DIRECTIONS[direction];
+    const keyImage = this.font.render(engineX, rowY, keyChar);
+    return keyImage;
   }
 
   offsetForText(text) {
