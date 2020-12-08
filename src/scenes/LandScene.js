@@ -59,7 +59,7 @@ export default class LandScene extends Phaser.Scene {
     margin += 16;
     this.title = this.font.render(centerX + this.offsetForText(text), top + margin, text);
 
-    text = `${damageIncidents} Damage Incidents, Deductible: ${maxDamage.toLocaleString()}`
+    text = `${damageIncidents} Damage Incidents, Damage: $${Math.abs(damageCost).toLocaleString()}, Deductible: $${Math.abs(maxDamage).toLocaleString()}`
     margin += 16;
     this.title = this.font.render(centerX + this.offsetForText(text), top + margin, text);
 

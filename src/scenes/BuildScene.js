@@ -32,6 +32,11 @@ export default class BuildScene extends Phaser.Scene {
 
     // Pre populate the HUD with build system info
     this.buildSystem.sendInfoEvent();
+
+    this.input.keyboard.createCombo('idkfa');
+    this.input.keyboard.on('keycombomatch', () => {
+      this.playState.funds += 1000000;
+    });
   }
 
   update(time, delta) {

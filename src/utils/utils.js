@@ -1,15 +1,27 @@
+import properties from "../properties";
+
+function loadPlayState() {
+  const stringState = localStorage.getItem(properties.localStorageKey);
+  return JSON.parse(stringState);
+}
+
+function savePlayState(playState) {
+  const stateString = JSON.stringify(playState);
+  localStorage.setItem(properties.localStorageKey, stateString);
+}
+
 function keyFromTilePosition(tilePosition) {
   return `${tilePosition.x}-${tilePosition.y}`;
 }
 
 function tilePositionFromKey(key) {
-  return { x: Number(key.split('-')[0]), y: Number(key.split('-')[1]) };
+  return { x: Number(key.split("-")[0]), y: Number(key.split("-")[1]) };
 }
 
 function wrapText(text, width) {
   const words = text.split(" ");
   let currentLineLength = 0;
-  let wrappedText = '';
+  let wrappedText = "";
   for (let i = 0; i < words.length; i++) {
     if (i === 0) {
       wrappedText = words[i];
@@ -27,7 +39,9 @@ function wrapText(text, width) {
 }
 
 export default {
+  loadPlayState,
+  savePlayState,
   keyFromTilePosition,
   tilePositionFromKey,
   wrapText,
-}
+};

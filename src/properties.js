@@ -23,6 +23,5 @@ export default {
   roundIntervalMillis: 0,
   levelWaitMillis: 2000,
   uiHangMillis: 500,
-  directions: ['up', 'down', 'left', 'right'],
-  animDirections: ['up', 'down', 'left']
+  localStorageKey: 'moonhauler',
 };
