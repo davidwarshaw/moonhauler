@@ -92,14 +92,9 @@ export default class BootScene extends Phaser.Scene {
         { type: "engine-small", angle: Math.PI, name: "2-4-engine-small" },
       ],
       [
-        { type: null },
-        { type: "tee", angle: 1.5 * Math.PI, name: "1-3-cross" },
-        { type: "cargo-empty", angle: 0, name: "0-1-cargo-empty" },
-      ],
-      [
         { type: "fuel-tank", angle: 0, name: "0-1-fuel-tank" },
         { type: "cross", angle: 0, name: "1-1-cross" },
-        { type: "fuel-tank", angle: Math.PI, name: "0-1-fuel-tank" },
+        { type: "cargo-empty", angle: 0, name: "0-1-cargo-empty" },
       ],
       [
         { type: null },

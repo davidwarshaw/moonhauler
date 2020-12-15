@@ -14,6 +14,8 @@ export default class Player {
     this.map = map;
     this.shipDefinition = shipDefinition;
 
+    this.inFlightDefinition = JSON.parse(JSON.stringify(shipDefinition));
+
     this.moduleSprites = [];
     this.moduleConstraints = [];
     this.engineSprites = {};
@@ -29,10 +31,15 @@ export default class Player {
     const spawn = this.map.getSpawn(shipHeight);
     const worldSpawn = TileMath.addHalfTile(this.map.tilemap.tileToWorldXY(spawn.x, spawn.y));
 
-    shipDefinition.forEach((row, y) =>
+    this.inFlightDefinition.forEach((row, y) =>
       row.forEach((module, x) => {
         if (!module.type) {
           return;
+        }
+
+        // Container forks are filled when flying
+        if (module.type === 'cargo-empty') {
+          module.type = 'cargo-full';
         }
         const moduleDefinition = moduleDefinitions[module.type];
         // console.log(moduleDefinition);
@@ -45,10 +52,7 @@ export default class Player {
         const worldY = worldSpawn.y + localY;
         // console.log(`${localX}, ${localY} -> ${worldX}, ${worldY}: ${module.index}`);
 
-        // Cargo forks should be full when flying
-        const tileIndex = module.type === 'cargo-empty' ?
-          moduleDefinitions['cargo-full'].tileIndex :
-          moduleDefinitions[module.type].tileIndex;
+        const tileIndex = moduleDefinition.tileIndex;
 
         const options = {
           label: `module+${module.name}`,
@@ -174,14 +178,14 @@ export default class Player {
   }
 
   getShipHeight() {
-    const height = this.shipDefinition
+    const height = this.inFlightDefinition
       .map(row => row.some(module => module.type))
       .reduce((acc, e) => acc + e);
     return height;
   }
 
   getNumberFuelTanks() {
-    const fuelTanks = this.shipDefinition
+    const fuelTanks = this.inFlightDefinition
     .flat()
     .filter(module => module.type === 'fuel-tank');
     return fuelTanks.length;
